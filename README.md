@@ -5,7 +5,7 @@ Node is single threaded but when working with promises it is common to have mult
 
 Current execution strategy works like a stack (LIFO).
 
-This project was started while flyig from LHR -> SFO and I didn't had an internet connection. So I was copy pasting the node modules from another project (thus no package.json, linting etc). Will add missing stuff in the future.
+I needed this for a personal project, so to optimize for time was done while flying from LHR -> SFO and I didn't had an internet connection. So I was copy pasting the node modules from another project (thus no package.json, linting etc). Will add missing stuff in the future.
 
 ### TODO
 
