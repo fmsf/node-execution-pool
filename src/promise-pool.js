@@ -18,7 +18,7 @@ module.exports = function( _poolSize ) {
         if ( promisePool.length < poolSize ) {
             executeNextPromise();
         }
-        
+
         return (promisePool.length + executionQueue.length) <= poolSize;
     };
 
@@ -35,7 +35,7 @@ module.exports = function( _poolSize ) {
             promise.then( removeFromPoolFunction( promise ) )
                    .then( executeNextPromise );
         }
-    };
+    }
 
     function removeFromPoolFunction( promise ) {
         return function() {
@@ -44,12 +44,4 @@ module.exports = function( _poolSize ) {
             promisePool.splice(i, 1);
         };
     }
-
-    /**
-     * FOR TESTING ONLY 
-     */
-    this.__internal = {
-        executeNextPromise : executeNextPromise,
-        removeFromPool : removeFromPoolFunction
-    };
 }

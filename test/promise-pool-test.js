@@ -66,8 +66,20 @@ describe('promise-pool', function() {
             }, 250);
         });
 
-        it('should not execute if there is no place in the promise pool', function() {
+        it('should not execute if there is no place in the promise pool', function( done ) {
+            let spy1 = sinon.spy(),
+                spy2 = sinon.spy(),
 
+                executor1 = aNewFunctionWhichResolvesAPromiseIn( 10000, spy1 ),
+                executor2 = aNewFunctionWhichResolvesAPromiseIn( 0, spy2 );
+            
+            executionPool.push( executor1 );
+            executionPool.push( executor2 );
+
+            setTimeout( function() {
+                [spy1.called, spy2.called].should.deep.equal([false, false]);
+                done();
+            }, 250);
         });
 
     });
