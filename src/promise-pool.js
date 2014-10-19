@@ -1,7 +1,8 @@
 module.exports = function( _poolSize ) {
+    "use strict";
 
     var poolSize = _poolSize || 5,
-        executionQueue = [];
+        executionQueue = [],
         promisePool = [];
 
     this.getPoolSize = function() {
@@ -17,7 +18,7 @@ module.exports = function( _poolSize ) {
         if ( promisePool.length < poolSize ) {
             executeNextPromise();
         }
-
+        
         return (promisePool.length + executionQueue.length) <= poolSize;
     };
 
@@ -25,18 +26,23 @@ module.exports = function( _poolSize ) {
         var promise,
             executor;
 
-        if ( promisePool.length < poolSize && executionQueue.length > 0 ) {
+        if ( promisePool.length < poolSize && executionQueue.length > 0 ) {            
             executor = executionQueue.pop();
+            
             promise = executor();
-            promise.then( removeFromPool( promise ) )
+            promisePool.push( promise );
+            
+            promise.then( removeFromPoolFunction( promise ) )
                    .then( executeNextPromise );
         }
     };
 
-    function removeFromPool( promise ) {
-        var i = 0;
-        for(; i < promisePool.length && promisePool[i] !== promise; i++ );
-        promisePool.splice(i, 1);
+    function removeFromPoolFunction( promise ) {
+        return function() {
+            var i = 0;
+            for(; i < promisePool.length && promisePool[i] !== promise; i++ );
+            promisePool.splice(i, 1);
+        };
     }
 
     /**
@@ -44,6 +50,6 @@ module.exports = function( _poolSize ) {
      */
     this.__internal = {
         executeNextPromise : executeNextPromise,
-        removeFromPool : removeFromPool
+        removeFromPool : removeFromPoolFunction
     };
 }

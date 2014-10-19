@@ -34,12 +34,12 @@ describe('promise-pool', function() {
         });
 
         it('should return true if the promise is going be executed immediately', function() {
-            executionPool.push( aNewFunctionWhichResolvesAPromiseIn( 0 ) ).should.equal( true );
+            executionPool.push( aNewFunctionWhichResolvesAPromiseIn( 100 ) ).should.be.true;
         });
 
         it('should return false if the promise is not going be executed immediately', function() {
-            executionPool.push( aNewFunctionWhichResolvesAPromiseIn( 0 ) );
-            executionPool.push( aNewFunctionWhichResolvesAPromiseIn( 0 ) ).should.equal( false );
+            executionPool.push( aNewFunctionWhichResolvesAPromiseIn( 1000 ) );
+            executionPool.push( aNewFunctionWhichResolvesAPromiseIn( 1000 ) ).should.be.false;
         });
     });
 
@@ -50,7 +50,7 @@ describe('promise-pool', function() {
             executionPool = new ExecutionPool( 1 );
         });
 
-        it('should execute all queued promises', function( done ) {
+        it('should execute all queued executors', function( done ) {
             let spy1 = sinon.spy(),
                 spy2 = sinon.spy(),
 
@@ -63,7 +63,11 @@ describe('promise-pool', function() {
             setTimeout( function() {
                 [spy1.called, spy2.called].should.deep.equal([true, true]);
                 done();
-            }, 200);
+            }, 250);
+        });
+
+        it('should not execute if there is no place in the promise pool', function() {
+
         });
 
     });
