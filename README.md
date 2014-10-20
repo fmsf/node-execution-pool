@@ -13,8 +13,9 @@ Bellow is an edited copy paste from one of the tests to be used as an example:
 
 ```
 var executionPool = new ExecutionPool( POOL_SIZE ),
-executor1 = aNewFunctionWhichResolvesAPromiseIn( 10000, spy1 ),
-executor2 = aNewFunctionWhichResolvesAPromiseIn( 0, spy2 );
+
+    executor1 = aNewFunctionWhichResolvesAPromiseIn( 10000, spy1 ),
+    executor2 = aNewFunctionWhichResolvesAPromiseIn( 0, spy2 );
             
 executionPool.push( executor1 );
 executionPool.push( executor2 );
