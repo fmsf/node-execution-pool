@@ -5,7 +5,7 @@ Node is single threaded but when working with promises it is common to have mult
 
 Current execution strategy works like a stack (LIFO).
 
-I needed this for a personal project, so to optimize for time was done while flying from LHR -> SFO and I didn't had an internet connection. So I was copy pasting the node modules from another project (thus no package.json, linting etc). Will add missing stuff in the future.
+I needed this for a personal project, so to optimize for time it was done while flying from LHR -> SFO and I didn't had an internet connection. I was copy pasting the node modules from another project (thus no package.json, linting etc). Will add missing stuff in the future.
 
 Until I add some documentation (maybe on the flight back) look at the tests for example of usage. If you push an executor into the execution pool it will automatically execute if the limit is not reached yet. Otherwhise it will execute once the current promise count finishes.
 
