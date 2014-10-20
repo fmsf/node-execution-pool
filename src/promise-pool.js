@@ -19,7 +19,7 @@ module.exports = function( _poolSize ) {
             executeNextPromise();
         }
 
-        return (promisePool.length + executionQueue.length) <= poolSize;
+        return ( promisePool.length + executionQueue.length ) <= poolSize;
     };
 
     function executeNextPromise() {
