@@ -27,7 +27,7 @@ module.exports = function( _poolSize ) {
             executor;
 
         if ( promisePool.length < poolSize && executionQueue.length > 0 ) {            
-            executor = executionQueue.pop();
+            executor = executionQueue.shift();
             
             promise = executor();
             promisePool.push( promise );

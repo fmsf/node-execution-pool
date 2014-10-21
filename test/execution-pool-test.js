@@ -1,9 +1,9 @@
 var should = require("chai").should(),
     sinon = require("sinon"),
     Q = require("Q"),
-    ExecutionPool = require("../src/promise-pool.js");
+    ExecutionPool = require("../src/execution-pool.js");
 
-describe('promise-pool', function() {
+describe('execution-pool', function() {
     "use strict";
 
     describe('constructor', function() {
