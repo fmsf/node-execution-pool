@@ -10,8 +10,10 @@
     },
 
     "bugs" : "https://github.com/fmsf/node-execution-pool/issues",
-    "devDependencies" : {
-        "q" : "~1.0.1",
+    "dependencies" : {
+        "q" : "~1.0.1"
+    },
+    "devDependencies" : {        
         "sinon": "~1.9.1"
     },    
     "engines": {

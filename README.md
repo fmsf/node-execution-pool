@@ -40,8 +40,10 @@ For clarity the `execution-pool` expects a function callback that returns a prom
 
 - Add more execution strategies.
 - Improve removal from queue complexity (currently O(N) can be done in O(1))
-- Add package.json
+- ~~Add package.json~
 - ~~Register in npm~~ https://www.npmjs.org/package/execution-pool
 - Add finishin strategies (should the .done be executed internally after the last then?)
 - Optimize tests (they are taking more than a second due to the setTimeouts)
 - Add timeout options.
+- Add a way to detect if the execution pool became empty.
+- Find an alternative for Q for promises (ideally remove dependence).

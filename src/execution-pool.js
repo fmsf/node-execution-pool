@@ -1,9 +1,17 @@
 module.exports = function( _poolSize ) {
     "use strict";
 
-    var poolSize = _poolSize || 5,
+    var Q = require("q"),
+        poolSize = _poolSize || 5,
         executionQueue = [],
-        promisePool = [];
+        promisePool = [],
+        finishedExecutingDeferer = Q.defer();
+
+    finishedExecutingDeferer.resolve(); // should start resolved because array is empty
+
+    this.finishedExecutionPromise = function() {
+        return finishedExecutingDeferer.promise;
+    };
 
     this.getPoolSize = function() {
         return poolSize;
@@ -13,6 +21,8 @@ module.exports = function( _poolSize ) {
      * Executable must return a promise
      */
     this.push = function( executable ) {
+        finishedExecutingDeferer = promisePool.length ? finishedExecutingDeferer : Q.defer();
+
         executionQueue.push( executable );
 
         if ( promisePool.length < poolSize ) {
@@ -34,6 +44,8 @@ module.exports = function( _poolSize ) {
             
             promise.then( removeFromPoolFunction( promise ) )
                    .then( executeNextPromise );
+        } else {
+            finishedExecutingDeferer.resolve();
         }
     }
 

@@ -81,7 +81,21 @@ describe('execution-pool', function() {
                 done();
             }, 250);
         });
+    });
 
+
+    describe('when the execution pool finishes executing', function() {
+        let executionPool;
+
+        beforeEach(function() {
+            executionPool = new ExecutionPool();
+        });
+
+        it('should resolve the empty promise automatically if it is empty', function( done ) {
+            executionPool.finishedExecutionPromise().then( function() {
+                done();
+            }).done();
+        });
     });
 
 
