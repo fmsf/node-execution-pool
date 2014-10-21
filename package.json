@@ -1,6 +1,6 @@
 {
     "name" : "execution-pool",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "description" : "An execution pool that allows to queue asynch functions and control how many promises wait in parallel",
     "homepage" : "https://github.com/fmsf/node-execution-pool",
     "author" : { 

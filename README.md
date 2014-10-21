@@ -25,6 +25,7 @@ executionPool.push( task2 );
 ```
 
 For clarity the `execution-pool` expects a function callback that returns a promise (i.e.):
+
 ```
 èxecutionPool.push( function() {
     var promise = new Promise();
@@ -33,7 +34,7 @@ For clarity the `execution-pool` expects a function callback that returns a prom
     
     return promise;
 });
-``
+```
 
 ### TODO
 
