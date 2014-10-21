@@ -9,12 +9,16 @@ module.exports = function( _poolSize ) {
 
     finishedExecutingDeferer.resolve(); // should start resolved because array is empty
 
-    this.finishedExecutionPromise = function() {
+    this.getFinishedExecutionPromise = function() {
         return finishedExecutingDeferer.promise;
     };
 
     this.getPoolSize = function() {
         return poolSize;
+    };
+
+    this.isEmpty = function() {
+        return promisePool.length === 0;
     };
 
     /**

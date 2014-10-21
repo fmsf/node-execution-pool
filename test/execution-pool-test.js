@@ -92,7 +92,9 @@ describe('execution-pool', function() {
         });
 
         it('should resolve the empty promise automatically if it is empty', function( done ) {
-            executionPool.finishedExecutionPromise().then( function() {
+            executionPool.isEmpty().should.be.true;
+
+            executionPool.getFinishedExecutionPromise().then( function() {
                 done();
             }).done();
         });
@@ -100,17 +102,20 @@ describe('execution-pool', function() {
         it('should resolve after promises ended', function( done ) {
             let isResolved = false,
                 dateBegin = new Date();
+
             executionPool.push( aNewFunctionWhichResolvesAPromiseIn( 100 ) );
             executionPool.push( aNewFunctionWhichResolvesAPromiseIn( 100 ) );
 
-            executionPool.finishedExecutionPromise().then(function() {
+            executionPool.getFinishedExecutionPromise().then( function() {
                 isResolved = true;
             }).done();
 
             isResolved.should.be.false;
+            executionPool.isEmpty().should.be.false;
             
             setTimeout( function() {
                 isResolved.should.be.true;
+                executionPool.isEmpty().should.be.true;
                 done();
             }, 200);
             

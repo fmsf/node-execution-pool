@@ -26,6 +26,7 @@ executionPool.push( task2 );
 
 For clarity the `execution-pool` expects a function callback that returns a promise (i.e.):
 
+
 ```
 èxecutionPool.push( function() {
     var promise = new Promise();
@@ -35,6 +36,22 @@ For clarity the `execution-pool` expects a function callback that returns a prom
     return promise;
 });
 ```
+
+If you want to be notified when the execution pool gets empty then you can call the utility method `getFinishedExecutionPromise`. As the name states it returns a promise that will resolve if the pool gets empty.
+
+
+```
+executionPool.getFinishedExecutionPromise().then( function() {
+    console.log("finished executing all promises");
+});
+```
+
+Or if you just want to check if your execution pool is still executing you can call `isEmpty` which returns either true or false;
+
+```
+executionPool.isEmpty(); 
+```
+
 
 ### TODO
 
