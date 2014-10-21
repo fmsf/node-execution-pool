@@ -54,11 +54,11 @@ describe('execution-pool', function() {
             let spy1 = sinon.spy(),
                 spy2 = sinon.spy(),
 
-                executor1 = aNewFunctionWhichResolvesAPromiseIn( 100, spy1 ),
-                executor2 = aNewFunctionWhichResolvesAPromiseIn( 100, spy2 );
+                task1 = aNewFunctionWhichResolvesAPromiseIn( 100, spy1 ),
+                task2 = aNewFunctionWhichResolvesAPromiseIn( 100, spy2 );
             
-            executionPool.push( executor1 );
-            executionPool.push( executor2 );
+            executionPool.push( task1 );
+            executionPool.push( task2 );
 
             setTimeout( function() {
                 [spy1.called, spy2.called].should.deep.equal([true, true]);
@@ -70,11 +70,11 @@ describe('execution-pool', function() {
             let spy1 = sinon.spy(),
                 spy2 = sinon.spy(),
 
-                executor1 = aNewFunctionWhichResolvesAPromiseIn( 10000, spy1 ),
-                executor2 = aNewFunctionWhichResolvesAPromiseIn( 0, spy2 );
+                task1 = aNewFunctionWhichResolvesAPromiseIn( 10000, spy1 ),
+                task2 = aNewFunctionWhichResolvesAPromiseIn( 0, spy2 );
             
-            executionPool.push( executor1 );
-            executionPool.push( executor2 );
+            executionPool.push( task1 );
+            executionPool.push( task2 );
 
             setTimeout( function() {
                 [spy1.called, spy2.called].should.deep.equal([false, false]);
@@ -95,6 +95,25 @@ describe('execution-pool', function() {
             executionPool.finishedExecutionPromise().then( function() {
                 done();
             }).done();
+        });
+
+        it('should resolve after promises ended', function( done ) {
+            let isResolved = false,
+                dateBegin = new Date();
+            executionPool.push( aNewFunctionWhichResolvesAPromiseIn( 100 ) );
+            executionPool.push( aNewFunctionWhichResolvesAPromiseIn( 100 ) );
+
+            executionPool.finishedExecutionPromise().then(function() {
+                isResolved = true;
+            }).done();
+
+            isResolved.should.be.false;
+            
+            setTimeout( function() {
+                isResolved.should.be.true;
+                done();
+            }, 200);
+            
         });
     });
 

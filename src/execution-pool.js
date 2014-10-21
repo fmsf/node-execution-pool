@@ -44,7 +44,7 @@ module.exports = function( _poolSize ) {
             
             promise.then( removeFromPoolFunction( promise ) )
                    .then( executeNextPromise );
-        } else {
+        } else if ( promisePool.length === 0 ) {
             finishedExecutingDeferer.resolve();
         }
     }
