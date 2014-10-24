@@ -38,12 +38,12 @@ module.exports = function( _poolSize ) {
 
     function executeNextPromise() {
         var promise,
-            executor;
+            task;
 
         if ( promisePool.length < poolSize && executionQueue.length > 0 ) {            
-            executor = executionQueue.shift();
+            task = executionQueue.shift();
             
-            promise = executor();
+            promise = task();
             promisePool.push( promise );
             
             promise.then( removeFromPoolFunction( promise ) )

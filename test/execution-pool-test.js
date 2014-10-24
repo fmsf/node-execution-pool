@@ -117,7 +117,7 @@ describe('execution-pool', function() {
                 isResolved.should.be.true;
                 executionPool.isEmpty().should.be.true;
                 done();
-            }, 200);
+            }, 250);
             
         });
     });
