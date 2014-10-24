@@ -5,7 +5,7 @@ Node is single threaded but when working with promises it is common to have mult
 
 Current execution strategy works like a queue (FIFO).
 
-I needed this for a personal project, so to optimize for time it was done while flying from LHR -> SFO and I didn't had an internet connection. I was copy pasting the node modules from another project (thus no package.json, linting etc). Will add missing stuff in the future.
+I needed this for a personal project, so to optimize for time it was done while flying from LHR -> SFO. Meanwhile I have been adding smaller updates. But the concept behind this is to be simplistic and easy to use.
 
 Until I add some documentation (maybe on the flight back) look at the tests for example of usage. If you push an task into the execution pool it will automatically execute if the limit is not reached yet. Otherwhise it will execute once the current promise count finishes.
 
