@@ -7,9 +7,9 @@ Node is single threaded but when working with promises it is common to have mult
 
 Current execution strategy works like a queue (FIFO).
 
-I needed this for a personal project, so to optimize for time it was done while flying from LHR -> SFO. Meanwhile I have been adding smaller updates. But the concept behind this is to be simplistic and easy to use.
+If you push a task into the execution pool it will automatically execute if the limit is not reached yet. Otherwhise it will execute once there is a free slot in the pool.
 
-Until I add some documentation (maybe on the flight back) look at the tests for example of usage. If you push a task into the execution pool it will automatically execute if the limit is not reached yet. Otherwhise it will execute once there is a free slot in the pool.
+I needed this for a personal project, so to optimize for time it was done while flying from LHR -> SFO. Meanwhile I have been adding smaller updates. But the concept behind this is to be simplistic and easy to use.
 
 Bellow are some examples:
 
