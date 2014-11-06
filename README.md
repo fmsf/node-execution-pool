@@ -3,15 +3,15 @@
 EXECUTION POOL
 ========================
 
-Node is single threaded but when working with promises it is common to have multiple waiting in parallel. This execution pool allows to schedule tasks that return promisses. Setting a limit to the amount of executions that can be actively waiting in paralel. 
+Node is single threaded but when working with promises it is common to have multiple waiting in parallel. This execution pool allows to queue tasks that return promisses. Setting a limit to the amount of executions that can be actively waiting in paralel. 
 
 Current execution strategy works like a queue (FIFO).
 
 I needed this for a personal project, so to optimize for time it was done while flying from LHR -> SFO. Meanwhile I have been adding smaller updates. But the concept behind this is to be simplistic and easy to use.
 
-Until I add some documentation (maybe on the flight back) look at the tests for example of usage. If you push a task into the execution pool it will automatically execute if the limit is not reached yet. Otherwhise it will execute once the current promise count finishes.
+Until I add some documentation (maybe on the flight back) look at the tests for example of usage. If you push a task into the execution pool it will automatically execute if the limit is not reached yet. Otherwhise it will execute once there is a free slot in the pool.
 
-Bellow is an edited copy paste from one of the tests to be used as an example:
+Bellow are some examples:
 
 ```
 var ExecutionPool = require("execution-pool"),
@@ -65,4 +65,4 @@ executionPool.isEmpty();
 - Optimize tests (they are taking more than a second due to the setTimeouts)
 - Add timeout options.
 - ~~Add a way to detect if the execution pool became empty.~~
-- Remove Q as an internal dependence. (currently there as a quick solution)
+- Remove Q as a internal dependence. (currently there as a quick solution)
