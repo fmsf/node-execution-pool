@@ -1,3 +1,5 @@
+![Build status](https://api.travis-ci.org/fmsf/node-execution-pool.svg)
+
 EXECUTION POOL
 ========================
 
