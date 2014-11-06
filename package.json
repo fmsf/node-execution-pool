@@ -16,8 +16,7 @@
     "devDependencies" : {        
         "sinon": "~1.9.1",
         "chai": "~1.9.2",
-        "mocha": "~2.0.1",
-        "q" : "~1.0.1"
+        "mocha": "~2.0.1"
     },    
     "engines": {
         "node": ">=0.6.0"
