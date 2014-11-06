@@ -1,6 +1,6 @@
 var should = require("chai").should(),
     sinon = require("sinon"),
-    Q = require("Q"),
+    Q = require("q"),
     ExecutionPool = require("../src/execution-pool.js");
 
 describe('execution-pool', function() {
