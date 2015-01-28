@@ -3,6 +3,8 @@
 EXECUTION POOL
 ========================
 
+[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/fmsf/node-execution-pool?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Node is single threaded but when working with promises it is common to have multiple waiting in parallel. This execution pool allows to queue tasks that return promisses. Setting a limit to the amount of executions that can be actively waiting in paralel. 
 
 Current execution strategy works like a queue (FIFO).
